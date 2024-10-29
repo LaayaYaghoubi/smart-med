@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\00.Framework\SmartMed.Contracts\SmartMed.Contracts.csproj" />
       <ProjectReference Include="..\..\SmartMed.Contracts\SmartMed.Contracts.csproj" />
     </ItemGroup>
 

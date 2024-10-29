@@ -1,4 +1,6 @@
-﻿using SmartMed.Contracts.Interfaces;
+﻿
+
+using SmartMed.Contracts.Interfaces;
 
 namespace SmartMed.Persistence.EF;
 

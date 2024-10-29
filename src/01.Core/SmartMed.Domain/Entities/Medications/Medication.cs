@@ -1,3 +1,5 @@
+
+
 using SmartMed.Contracts.BaseClasses;
 
 namespace SmartMed.Domain.Entities.Medications;

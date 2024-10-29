@@ -14,6 +14,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\00.Framework\SmartMed.Contracts\SmartMed.Contracts.csproj" />
+      <ProjectReference Include="..\..\01.Core\SmartMed.Application\SmartMed.Application.csproj" />
+      <ProjectReference Include="..\..\01.Core\SmartMed.Domain\SmartMed.Domain.csproj" />
       <ProjectReference Include="..\01.Core\SmartMed.Domain\SmartMed.Domain.csproj" />
       <ProjectReference Include="..\SmartMed.Application\SmartMed.Application.csproj" />
     </ItemGroup>

@@ -13,6 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\00.Framework\SmartMed.Contracts\SmartMed.Contracts.csproj" />
+      <ProjectReference Include="..\..\02.Infrastructure\SmartMed.Persistence.EF\SmartMed.Persistence.EF.csproj" />
       <ProjectReference Include="..\SmartMed.Persistence.EF\SmartMed.Persistence.EF.csproj" />
     </ItemGroup>
 
