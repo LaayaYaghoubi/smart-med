@@ -1,5 +1,6 @@
 using SmartMed.Application.Medications.Contracts;
 using SmartMed.Application.Medications.Contracts.Dto;
+using SmartMed.Application.Medications.Exceptions;
 using SmartMed.Contracts.Interfaces;
 using SmartMed.Domain.Entities.Medications;
 
@@ -18,6 +19,9 @@ public class ApplicationMedicationService : IMedicationService
 
     public async Task AddAsync(AddMedicationDto dto)
     {
+        if(dto.Quantity <= 0)
+            throw new QuantityMustBeGreaterThanZeroException();
+        
         var medication = new Medication
         {
             Name = dto.Name,
