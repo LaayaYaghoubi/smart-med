@@ -1,10 +1,10 @@
+using MediatR;
 using SmartMed.Domain.Entities.Medications;
 
-namespace SmartMed.Application.Medications.Contracts.Dto;
+namespace SmartMed.Application.Medications.Commands.Create;
 
-public class GetMedicationDto
+public record CreateMedicationCommand : IRequest
 {
-    public int Id { get; set; }
     public string Name { get; set; }
     public int Quantity { get; set; }
     public MedicationType Type { get; set; }

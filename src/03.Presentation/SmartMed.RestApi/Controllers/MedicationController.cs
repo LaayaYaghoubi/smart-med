@@ -1,6 +1,6 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SmartMed.Application.Medications.Contracts;
-using SmartMed.Application.Medications.Contracts.Dto;
+using SmartMed.Application.Medications.Commands.Create;
 
 namespace SmartMed.RestApi.Controllers;
 
@@ -8,22 +8,16 @@ namespace SmartMed.RestApi.Controllers;
 [Route("api/v1/medication")]
 public class MedicationController : ControllerBase
 {
-    private readonly IMedicationService _medicationService;
+    private readonly ISender _mediator;
 
-    public MedicationController(IMedicationService medicationService)
+    public MedicationController(ISender mediator)
     {
-        _medicationService = medicationService;
-    }
-
-    [HttpPost]
-    public async Task Add([FromBody] AddMedicationDto dto)
-    {
-        await _medicationService.AddAsync(dto);
+        _mediator = mediator;
     }
     
-    [HttpDelete("{id}")]
-    public async Task Delete(int id)
+    [HttpPost]
+    public async Task Add([FromBody] CreateMedicationCommand command)
     {
-        await _medicationService.DeleteAsync(id);
+        await _mediator.Send(command);
     }
 }

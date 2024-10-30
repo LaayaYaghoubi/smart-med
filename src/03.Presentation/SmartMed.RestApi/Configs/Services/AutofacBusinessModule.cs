@@ -1,5 +1,5 @@
 using Autofac;
-using SmartMed.Application.Medications.Contracts;
+using SmartMed.Application.Medications.Commands.Create;
 using SmartMed.Contracts.Interfaces;
 using SmartMed.Infrastructure.Dates.Services;
 using SmartMed.Persistence.EF;
@@ -20,7 +20,7 @@ public class AutofacBusinessModule : Module
 
     protected override void Load(ContainerBuilder container)
     {
-        var serviceAssembly = typeof(IMedicationService).Assembly;
+        var serviceAssembly = typeof(CreateMedicationCommandHandler).Assembly;
         var persistentAssembly = typeof(EfUnitOfWork).Assembly;
 
 

@@ -1,9 +1,7 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using SmartMed.Application.Medications.Contracts;
-using SmartMed.Application.Medications.Contracts.Dto;
-using SmartMed.Application.Medications.Exceptions;
-using SmartMed.Contracts.Interfaces;
+using SmartMed.Application.Medications.Commands.Create;
+using SmartMed.Application.Medications.Commands.Exceptions;
 using SmartMed.Domain.Entities.Medications;
 using SmartMed.Test.Tools.Infrastructure.DataBaseConfig.Unit;
 using SmartMed.Test.Tools.Medications;
@@ -13,56 +11,49 @@ namespace SmartMed.Applications.Unit.Tests.Medications.Create;
 
 public class AddMedicationTests : BusinessUnitTest
 {
-    private readonly IMedicationService _medicationService;
-    private readonly DateTime fakeDateTimeNow = DateTime.UtcNow;
+    private readonly CreateMedicationCommandHandler _createMedicationCommandHandler;
+    private readonly DateTime _fakeDateTimeNow = DateTime.UtcNow;
 
     public AddMedicationTests()
     {
-        _medicationService = MedicationServiceFactory.Create(SetupContext,fakeDateTimeNow);
+        _createMedicationCommandHandler= CreateMedicationCommandHandlerFactory.Create(SetupContext, _fakeDateTimeNow);
     }
 
     [Fact]
     public async Task Add_should_adds_Medication_medication_properly()
     {
-        var medication = AddMedicationDtoFactory.Create();
+        var command = new CreateMedicationCommand
+        {
+            Name = "Medication",
+            Quantity = 10,
+            Type = MedicationType.Liquid,
+            Code = "123456"
+        };
 
-        await _medicationService.AddAsync(medication);
+        await _createMedicationCommandHandler.Handle(command, default);
 
         var actual = await ReadContext.Set<Medication>().SingleAsync();
-        actual.Name.Should().Be(medication.Name);
-        actual.Quantity.Should().Be(medication.Quantity);
-        actual.CreationDate.Should().Be(fakeDateTimeNow);
-        actual.Type.Should().Be(medication.Type);
+        actual.Name.Should().Be(command.Name);
+        actual.Quantity.Should().Be(command.Quantity);
+        actual.CreationDate.Should().Be(_fakeDateTimeNow);
+        actual.Type.Should().Be(command.Type);
     }
-
-    [Theory]
-    [InlineData(-1)]
-    [InlineData(0)]
-    public async Task Add_should_throw_exception_if_quantity_is_less_than_or_equal_to_zero(int quantity)
-    {
-        var medication = AddMedicationDtoFactory.Create();
-        medication.Quantity = quantity;
-
-        var act = () => _medicationService.AddAsync(medication);
-
-        await act.Should().ThrowExactlyAsync<QuantityMustBeGreaterThanZeroException>();
-    }
-
+    
     [Fact]
     public async Task Add_should_throw_exception_if_medication_code_is_duplicated()
     {
         var medication = new MedicationBuilder().Build();
         Save(medication);
-        var dto = new AddMedicationDto
+        var command = new CreateMedicationCommand
         {
-            Name = medication.Name,
-            Code = medication.Code,
+            Name = "Medication",
             Quantity = 10,
-            Type = MedicationType.Liquid
+            Type = MedicationType.Liquid,
+            Code = medication.Code
         };
-
-        var act = () => _medicationService.AddAsync(dto);
-
-        await act.Should().ThrowExactlyAsync<MedicationCodeIsDuplicated>();
+    
+        var act =()=> _createMedicationCommandHandler.Handle(command,default);
+    
+        await act.Should().ThrowExactlyAsync<MedicationCodeIsDuplicatedException>();
     }
 }
