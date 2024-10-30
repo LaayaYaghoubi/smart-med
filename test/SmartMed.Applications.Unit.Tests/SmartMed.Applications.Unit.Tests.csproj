@@ -22,8 +22,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\SmartMed.Application\SmartMed.Application.csproj" />
+      <ProjectReference Include="..\..\src\01.Core\SmartMed.Application\SmartMed.Application.csproj" />
       <ProjectReference Include="..\SmartMed.Test.Tools\SmartMed.Test.Tools.csproj" />
     </ItemGroup>
 
+   
 </Project>

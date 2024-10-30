@@ -22,6 +22,10 @@ public class ApplicationMedicationService : IMedicationService
         if(dto.Quantity <= 0)
             throw new QuantityMustBeGreaterThanZeroException();
         
+        var isDuplicated = await _medicationRepository.IsCodeDuplicated(dto.Code);
+        if(isDuplicated)
+            throw new MedicationCodeIsDuplicated();
+        
         var medication = new Medication
         {
             Name = dto.Name,

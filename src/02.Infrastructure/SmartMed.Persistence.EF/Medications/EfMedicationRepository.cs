@@ -17,4 +17,9 @@ public class EfMedicationRepository : IMedicationRepository
     {
         _medications.Add(medication);
     }
+
+    public async Task<bool> IsCodeDuplicated(string code)
+    {
+        return await _medications.AnyAsync(med => med.Code.ToLower() == code.ToLower());
+    }
 }

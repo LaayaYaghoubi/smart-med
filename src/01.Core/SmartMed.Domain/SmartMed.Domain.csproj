@@ -8,11 +8,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\00.Framework\SmartMed.Contracts\SmartMed.Contracts.csproj" />
-      <ProjectReference Include="..\..\SmartMed.Contracts\SmartMed.Contracts.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Entities\" />
-    </ItemGroup>
+
+  
 
 </Project>

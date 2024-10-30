@@ -1,9 +1,11 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using SmartMed.Application.Medications.Contracts;
+using SmartMed.Application.Medications.Contracts.Dto;
 using SmartMed.Application.Medications.Exceptions;
 using SmartMed.Domain.Entities.Medications;
 using SmartMed.Test.Tools.Infrastructure.DataBaseConfig.Unit;
+using SmartMed.Test.Tools.Medications;
 using SmartMed.Test.Tools.Medications.Create;
 
 namespace SmartMed.Applications.Unit.Tests.Medications.Create;
@@ -30,7 +32,7 @@ public class AddMedicationTests : BusinessUnitTest
         actual.CreationDate.Should().Be(medication.CreationDate);
         actual.Type.Should().Be(medication.Type);
     }
-    
+
     [Theory]
     [InlineData(-1)]
     [InlineData(0)]
@@ -39,8 +41,27 @@ public class AddMedicationTests : BusinessUnitTest
         var medication = AddMedicationDtoFactory.Create();
         medication.Quantity = quantity;
 
-        var act = async () => await _medicationService.AddAsync(medication);
+        var act = () => _medicationService.AddAsync(medication);
 
         await act.Should().ThrowExactlyAsync<QuantityMustBeGreaterThanZeroException>();
+    }
+
+    [Fact]
+    public async Task Add_should_throw_exception_if_medication_code_is_duplicated()
+    {
+        var medication = new MedicationBuilder().Build();
+        Save(medication);
+        var dto = new AddMedicationDto
+        {
+            Name = medication.Name,
+            Code = medication.Code,
+            Quantity = 10,
+            CreationDate = new DateOnly(2021, 10, 10),
+            Type = MedicationType.Liquid
+        };
+
+        var act = () => _medicationService.AddAsync(dto);
+
+        await act.Should().ThrowExactlyAsync<MedicationCodeIsDuplicated>();
     }
 }

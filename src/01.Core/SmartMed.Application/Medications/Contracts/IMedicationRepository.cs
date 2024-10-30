@@ -6,4 +6,5 @@ namespace SmartMed.Application.Medications.Contracts;
 public interface IMedicationRepository : IRepository
 {
     void Add(Medication medication);
+    Task<bool> IsCodeDuplicated(string code);
 }
