@@ -10,11 +10,13 @@ public class ApplicationMedicationService : IMedicationService
 {
     private readonly IMedicationRepository _medicationRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IDateTimeService _dateTimeService;
 
-    public ApplicationMedicationService(IMedicationRepository medicationRepository, IUnitOfWork unitOfWork)
+    public ApplicationMedicationService(IMedicationRepository medicationRepository, IUnitOfWork unitOfWork, IDateTimeService dateTimeService)
     {
         _medicationRepository = medicationRepository;
         _unitOfWork = unitOfWork;
+        _dateTimeService = dateTimeService;
     }
 
     public async Task AddAsync(AddMedicationDto dto)
@@ -30,7 +32,7 @@ public class ApplicationMedicationService : IMedicationService
         {
             Name = dto.Name,
             Quantity = dto.Quantity,
-            CreationDate = dto.CreationDate,
+            CreationDate = _dateTimeService.Now,
             Type = dto.Type,
             Code = dto.Code
         };

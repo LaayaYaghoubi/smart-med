@@ -1,6 +1,7 @@
 using Autofac;
 using SmartMed.Application.Medications.Contracts;
 using SmartMed.Contracts.Interfaces;
+using SmartMed.Infrastructure.Dates.Services;
 using SmartMed.Persistence.EF;
 using SmartMed.Persistence.EF.Infrastructure;
 
@@ -41,6 +42,10 @@ public class AutofacBusinessModule : Module
                 ConnectionStringKey, _persistenceConfig.ConnectionString)
             .AsSelf()
             .InstancePerLifetimeScope();
+        
+        container.RegisterType<ApplicationDateTimeService>()
+            .As<IDateTimeService>()
+            .SingleInstance();
 
         base.Load(container);
     }

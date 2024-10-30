@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMed.Test.Tools", "test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMed.Application", "src\01.Core\SmartMed.Application\SmartMed.Application.csproj", "{F9E3EB30-96F2-4DB1-9861-0AB123BC6CFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMed.Infrastructure", "src\SmartMed.Infrastructure\SmartMed.Infrastructure.csproj", "{F5838222-D142-464B-BA2E-4921874AC5C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,7 @@ Global
 		{EC275FA2-3054-4F28-B8A8-5CA6AA31FF64} = {0F65FF8A-3477-42FC-8DE8-9D7F90C725EE}
 		{D184E00A-EA0B-4D50-84D0-66294D963410} = {9065E7C5-51C4-4383-BDE1-A75051F4223C}
 		{F9E3EB30-96F2-4DB1-9861-0AB123BC6CFE} = {34E4CB58-0F02-4975-94D8-9CBDF70D5B0A}
+		{F5838222-D142-464B-BA2E-4921874AC5C8} = {1EABE956-160D-4D52-8F5F-C133C1C825C8}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9EE9A13B-7A4B-43AE-9A6D-1405D8D4AC1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -80,5 +83,9 @@ Global
 		{F9E3EB30-96F2-4DB1-9861-0AB123BC6CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9E3EB30-96F2-4DB1-9861-0AB123BC6CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9E3EB30-96F2-4DB1-9861-0AB123BC6CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5838222-D142-464B-BA2E-4921874AC5C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5838222-D142-464B-BA2E-4921874AC5C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5838222-D142-464B-BA2E-4921874AC5C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5838222-D142-464B-BA2E-4921874AC5C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

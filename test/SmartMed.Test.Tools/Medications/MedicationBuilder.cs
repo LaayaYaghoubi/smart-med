@@ -12,7 +12,7 @@ public class MedicationBuilder
         {
             Name = "Medication 1",
             Quantity = 10,
-            CreationDate = new DateOnly(2021, 10, 10),
+            CreationDate = new DateTime(2021, 10, 10),
             Type = MedicationType.Tablet,
             Code = "43534"
         };
@@ -36,7 +36,7 @@ public class MedicationBuilder
         return this;
     }
     
-    public MedicationBuilder WithCreationDate(DateOnly creationDate)
+    public MedicationBuilder WithCreationDate(DateTime creationDate)
     {
         _medication.CreationDate = creationDate;
         return this;

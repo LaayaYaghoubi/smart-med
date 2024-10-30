@@ -11,7 +11,6 @@ public static class AddMedicationDtoFactory
         {
             Name = "Medication 1",
             Quantity = 10,
-            CreationDate = new DateOnly(2021, 10, 10),
             Type = MedicationType.Tablet,
             Code = "43534"
         };

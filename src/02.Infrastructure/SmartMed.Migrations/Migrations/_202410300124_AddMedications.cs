@@ -11,7 +11,7 @@ public class _202410300124_AddMedications : Migration
             .WithColumn("Name").AsString(50).NotNullable()
             .WithColumn("Quantity").AsInt32().NotNullable()
             .WithColumn("Type").AsInt16().NotNullable()
-            .WithColumn("CreationDate").AsDate().NotNullable()
+            .WithColumn("CreationDate").AsDateTime().NotNullable()
             .WithColumn("Code").AsString(30).NotNullable();
 
     }
