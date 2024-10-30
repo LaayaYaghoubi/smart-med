@@ -1,6 +1,6 @@
 namespace SmartMed.Domain.Entities.Medications;
 
-public enum MedicationType
+public enum MedicationType : short
 {
     Tablet = 1,
     Capsule = 2,

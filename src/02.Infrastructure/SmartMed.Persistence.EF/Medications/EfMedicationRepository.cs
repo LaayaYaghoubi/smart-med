@@ -22,4 +22,14 @@ public class EfMedicationRepository : IMedicationRepository
     {
         return await _medications.AnyAsync(med => med.Code.ToLower() == code.ToLower());
     }
+
+    public async Task<Medication?> GetById(int id)
+    {
+        return await _medications.FirstOrDefaultAsync(med=>med.Id == id);
+    }
+
+    public void Delete(Medication medication)
+    {
+        _medications.Remove(medication);
+    }
 }

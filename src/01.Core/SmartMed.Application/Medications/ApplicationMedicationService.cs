@@ -39,4 +39,14 @@ public class ApplicationMedicationService : IMedicationService
         _medicationRepository.Add(medication);
         await _unitOfWork.Complete();
     }
+
+    public async Task DeleteAsync(int id)
+    {
+        var medication = await _medicationRepository.GetById(id);
+        if(medication == null)
+            throw new MedicationNotFoundException();
+        
+        _medicationRepository.Delete(medication);
+        await _unitOfWork.Complete();
+    }
 }

@@ -20,4 +20,10 @@ public class MedicationController : ControllerBase
     {
         await _medicationService.AddAsync(dto);
     }
+    
+    [HttpDelete("{id}")]
+    public async Task Delete(int id)
+    {
+        await _medicationService.DeleteAsync(id);
+    }
 }
