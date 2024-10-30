@@ -7,10 +7,10 @@ public class BusinessUnitTest
 {
     protected EfDataContext DbContext { get; set; }
     protected EfDataContext SetupContext { get; set; }
-    protected EfDataContext ReadContext { get; set; }
+    protected EfReadDataContext ReadContext { get; set; }
 
 
-    protected BusinessUnitTest(string? tenantId = null)
+    protected BusinessUnitTest()
     {
         var db = CreateDatabase();
 
@@ -19,7 +19,7 @@ public class BusinessUnitTest
         DbContext = db.CreateDataContext<EfDataContext>();
         SetupContext = db.CreateDataContext
             <EfDataContext>();
-        ReadContext = db.CreateDataContext<EfDataContext>();
+        ReadContext = db.CreateDataContext<EfReadDataContext>();
     }
 
     protected EFInMemoryDatabase CreateDatabase()

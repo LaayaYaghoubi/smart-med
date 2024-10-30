@@ -43,6 +43,12 @@ public class AutofacBusinessModule : Module
             .AsSelf()
             .InstancePerLifetimeScope();
         
+        container.RegisterType<EfReadDataContext>()
+            .WithParameter(
+                ConnectionStringKey, _persistenceConfig.ConnectionString)
+            .AsSelf()
+            .InstancePerLifetimeScope();
+        
         container.RegisterType<ApplicationDateTimeService>()
             .As<IDateTimeService>()
             .SingleInstance();

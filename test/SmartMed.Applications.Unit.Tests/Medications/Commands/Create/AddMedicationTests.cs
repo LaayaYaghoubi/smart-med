@@ -11,12 +11,12 @@ namespace SmartMed.Applications.Unit.Tests.Medications.Create;
 
 public class AddMedicationTests : BusinessUnitTest
 {
-    private readonly CreateMedicationCommandHandler _createMedicationCommandHandler;
+    private readonly CreateMedicationCommandHandler _sut;
     private readonly DateTime _fakeDateTimeNow = DateTime.UtcNow;
 
     public AddMedicationTests()
     {
-        _createMedicationCommandHandler= CreateMedicationCommandHandlerFactory.Create(SetupContext, _fakeDateTimeNow);
+        _sut= CreateMedicationCommandHandlerFactory.Create(SetupContext, _fakeDateTimeNow);
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public class AddMedicationTests : BusinessUnitTest
             Code = "123456"
         };
 
-        await _createMedicationCommandHandler.Handle(command, default);
+        await _sut.Handle(command, default);
 
         var actual = await ReadContext.Set<Medication>().SingleAsync();
         actual.Name.Should().Be(command.Name);
@@ -52,7 +52,7 @@ public class AddMedicationTests : BusinessUnitTest
             Code = medication.Code
         };
     
-        var act =()=> _createMedicationCommandHandler.Handle(command,default);
+        var act =()=> _sut.Handle(command,default);
     
         await act.Should().ThrowExactlyAsync<MedicationCodeIsDuplicatedException>();
     }

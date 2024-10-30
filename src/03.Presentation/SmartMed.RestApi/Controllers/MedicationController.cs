@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmartMed.Application.Medications.Commands.Create;
+using SmartMed.Application.Medications.Queries.GetMedications;
 
 namespace SmartMed.RestApi.Controllers;
 
@@ -19,5 +20,11 @@ public class MedicationController : ControllerBase
     public async Task Add([FromBody] CreateMedicationCommand command)
     {
         await _mediator.Send(command);
+    }
+    
+    [HttpGet]
+    public async Task<List<GetMedicationDto>> GetAll()
+    {
+        return await _mediator.Send(new GetMedicationQuery());
     }
 }

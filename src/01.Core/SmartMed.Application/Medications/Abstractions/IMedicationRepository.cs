@@ -1,6 +1,7 @@
 using SmartMed.Contracts.Interfaces;
+using SmartMed.Domain.Entities.Medications;
 
-namespace SmartMed.Domain.Entities.Medications;
+namespace SmartMed.Application.Medications.Abstractions;
 
 public interface IMedicationRepository : IRepository
 {

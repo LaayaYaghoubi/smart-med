@@ -6,7 +6,7 @@ namespace SmartMed.Applications.Unit.Tests.Medications.Create;
 
 public class CreateMedicationCommandValidatorTests
 {
-    private readonly CreateMedicationCommandValidator _validator = new();
+    private readonly CreateMedicationCommandValidator _sut = new();
 
     [Fact]
     public void Should_Pass_Validation_When_Command_Is_Valid()
@@ -18,7 +18,7 @@ public class CreateMedicationCommandValidatorTests
             Quantity = 10,
         };
        
-        var result = _validator.TestValidate(command);
+        var result = _sut.TestValidate(command);
 
        
         result.ShouldNotHaveAnyValidationErrors();
@@ -38,7 +38,7 @@ public class CreateMedicationCommandValidatorTests
         };
 
        
-        var result = _validator.TestValidate(command);
+        var result = _sut.TestValidate(command);
 
        
         result.ShouldHaveValidationErrorFor(c => c.Quantity)
@@ -54,7 +54,7 @@ public class CreateMedicationCommandValidatorTests
             Quantity = 453
         };
        
-        var result = _validator.TestValidate(command);
+        var result = _sut.TestValidate(command);
 
        
         result.ShouldHaveValidationErrorFor(c => c.Name)
@@ -70,7 +70,7 @@ public class CreateMedicationCommandValidatorTests
             Quantity = 453
         };
        
-        var result = _validator.TestValidate(command);
+        var result = _sut.TestValidate(command);
 
        
         result.ShouldHaveValidationErrorFor(c => c.Name)

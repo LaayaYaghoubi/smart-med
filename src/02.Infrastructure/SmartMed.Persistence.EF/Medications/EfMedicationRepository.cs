@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SmartMed.Application.Medications.Abstractions;
 using SmartMed.Domain.Entities.Medications;
 
 namespace SmartMed.Persistence.EF.Medications;

@@ -1,4 +1,5 @@
 using MediatR;
+using SmartMed.Application.Medications.Abstractions;
 using SmartMed.Application.Medications.Commands.Exceptions;
 using SmartMed.Contracts.Interfaces;
 using SmartMed.Domain.Entities.Medications;
