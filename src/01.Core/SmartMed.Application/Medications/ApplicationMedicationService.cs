@@ -49,4 +49,9 @@ public class ApplicationMedicationService : IMedicationService
         _medicationRepository.Delete(medication);
         await _unitOfWork.Complete();
     }
+
+    public async Task<List<GetMedicationDto>> GetAllAsync()
+    {
+        return await _medicationRepository.GetAll();
+    }
 }

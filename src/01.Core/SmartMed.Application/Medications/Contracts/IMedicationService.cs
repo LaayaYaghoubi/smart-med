@@ -7,4 +7,5 @@ public interface IMedicationService : IService
 {
     Task AddAsync(AddMedicationDto dto);
     Task DeleteAsync(int id);
+    Task<List<GetMedicationDto>> GetAllAsync();
 }

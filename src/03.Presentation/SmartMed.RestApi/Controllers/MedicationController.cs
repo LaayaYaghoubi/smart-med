@@ -26,4 +26,10 @@ public class MedicationController : ControllerBase
     {
         await _medicationService.DeleteAsync(id);
     }
+    
+    [HttpGet]
+    public async Task<List<GetMedicationDto>> GetAll()
+    {
+        return await _medicationService.GetAllAsync();
+    }
 }

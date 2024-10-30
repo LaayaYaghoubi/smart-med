@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SmartMed.Application.Medications.Contracts;
+using SmartMed.Application.Medications.Contracts.Dto;
 using SmartMed.Domain.Entities.Medications;
 
 namespace SmartMed.Persistence.EF.Medications;
@@ -31,5 +32,17 @@ public class EfMedicationRepository : IMedicationRepository
     public void Delete(Medication medication)
     {
         _medications.Remove(medication);
+    }
+
+    public async Task<List<GetMedicationDto>> GetAll()
+    {
+       return await _medications.Select(med => new GetMedicationDto
+        {
+            Id = med.Id,
+            Name = med.Name,
+            Quantity = med.Quantity,
+            Type = med.Type,
+            Code = med.Code
+        }).ToListAsync();
     }
 }

@@ -1,3 +1,4 @@
+using SmartMed.Application.Medications.Contracts.Dto;
 using SmartMed.Contracts.Interfaces;
 using SmartMed.Domain.Entities.Medications;
 
@@ -9,4 +10,5 @@ public interface IMedicationRepository : IRepository
     Task<bool> IsCodeDuplicated(string code);
     Task<Medication?> GetById(int id);
     void Delete(Medication medication);
+    Task<List<GetMedicationDto>> GetAll();
 }
