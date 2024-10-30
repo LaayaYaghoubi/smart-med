@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmartMed.Application.Medications.Commands.Create;
+using SmartMed.Application.Medications.Commands.Delete;
 using SmartMed.Application.Medications.Queries.GetMedications;
 
 namespace SmartMed.RestApi.Controllers;
@@ -26,5 +27,11 @@ public class MedicationController : ControllerBase
     public async Task<List<GetMedicationDto>> GetAll()
     {
         return await _mediator.Send(new GetMedicationQuery());
+    }
+    
+    [HttpDelete("{id}")]
+    public async Task Delete(int id)
+    {
+        await _mediator.Send(new DeleteMedicationCommand(id));
     }
 }

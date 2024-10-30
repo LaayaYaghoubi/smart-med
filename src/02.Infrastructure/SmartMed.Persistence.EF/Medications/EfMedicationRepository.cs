@@ -18,8 +18,18 @@ public class EfMedicationRepository : IMedicationRepository
         _medications.Add(medication);
     }
 
-    public async Task<bool> IsDuplicate(string requestCode)
+    public async Task<bool> IsDuplicate(string code)
     {
-        return await _medications.AnyAsync(m => m.Code.ToLower() == requestCode.ToLower());
+        return await _medications.AnyAsync(m => m.Code.ToLower() == code.ToLower());
+    }
+
+    public async Task<Medication?> GetByIdAsync(int id)
+    {
+        return await _medications.FirstOrDefaultAsync(med=>med.Id == id);
+    }
+
+    public void Delete(Medication medication)
+    {
+        _medications.Remove(medication);
     }
 }

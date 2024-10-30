@@ -26,9 +26,5 @@
       <ProjectReference Include="..\SmartMed.Test.Tools\SmartMed.Test.Tools.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Medications\Commands\" />
-    </ItemGroup>
-
    
 </Project>
